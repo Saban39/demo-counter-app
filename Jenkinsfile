@@ -72,9 +72,14 @@ stage('Nexus Uploader'){
                 
                 steps{
                     
+                    
+
                     script{
                         
-                       nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], credentialsId: '2b8bb249-5c1b-465c-90be-7986a1f94f64', groupId: 'com.example', nexusUrl: 'nexus.example.com:9999', nexusVersion: 'nexus3', protocol: 'http', repository: 'demoapp-sg', version: '1.0.0'
+                       def readPomVersion = readMavenPom file: 'pom.xml'
+                       def nexusRepo = readMavenPom.version.endWith("SNAPSHOT") ? "demoapp-snapshot" : "demoapp-sg"
+
+                       nexusArtifactUploader artifacts: [[artifactId: 'springboot', classifier: '', file: 'target/Uber.jar', type: 'jar']], credentialsId: '2b8bb249-5c1b-465c-90be-7986a1f94f64', groupId: 'com.example', nexusUrl: 'nexus.example.com:9999', nexusVersion: 'nexus3', protocol: 'http', repository: nexusRepo, version: "$(readPomVersion.version)"
 
                     }
                 }
