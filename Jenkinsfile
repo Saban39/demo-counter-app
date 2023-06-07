@@ -94,7 +94,19 @@ stage('Nexus Uploader'){
             }
         }
       }
+      stage('Push docker image to docer hub'){
+        steps{
+            script{
+                withCredentials([string(credentialsId: 'git_creds', variable: 'docker_hub_pwd')]) {
+    // some block
+                    sh 'docker login -u sg1905 -p ${docker_hub_pwd}'
+                    sh 'docker image push sg1905/$JOB_NAME:v1.$BUILD_ID'
+                    sh 'docker image push sg1905/$JOB_NAME:latest'
 
+                }
+            }
+        }
+      }
 
         }
         
