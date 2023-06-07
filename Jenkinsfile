@@ -14,7 +14,7 @@ pipeline{
                     git branch: 'main', url: 'https://github.com/Saban39/demo-counter-app.git'
                 }
             }
-        }
+        }/*
         stage('UNIT testing'){
             
             steps{
@@ -24,7 +24,7 @@ pipeline{
                     sh 'mvn test'
                 }
             }
-        }/*
+        }
         stage('Integration testing'){
             
             steps{
@@ -34,7 +34,7 @@ pipeline{
                     sh 'mvn verify -DskipUnitTests'
                 }
             }
-        }
+        }*/
         stage('Maven build'){
             
             steps{
@@ -44,7 +44,7 @@ pipeline{
                     sh 'mvn clean install'
                 }
             }
-        }
+        }/*
         stage('Static code analysis'){
             
             steps{
