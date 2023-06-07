@@ -24,7 +24,7 @@ pipeline{
                     sh 'mvn test'
                 }
             }
-        }
+        }/*
         stage('Integration testing'){
             
             steps{
@@ -45,7 +45,7 @@ pipeline{
                 }
             }
         }
-        /*stage('Static code analysis'){
+        stage('Static code analysis'){
             
             steps{
                 
