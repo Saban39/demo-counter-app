@@ -5,7 +5,16 @@ pipeline{
         maven 'maven'
     }
     stages {
-        
+        stage('Git Checkout'){
+            
+            steps{
+                
+                script{
+                    
+                    git branch: 'main', url: 'https://github.com/Saban39/demo-counter-app.git'
+                }
+            }
+        }
        
 stage('Nexus Uploader'){
                 
